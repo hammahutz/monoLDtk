@@ -6,13 +6,17 @@ using TImport = System.String;
 
 namespace MonoLDtk.Pipeline;
 
-[ContentImporter(".ldtk", DisplayName = "LDtk World Importer", DefaultProcessor = "LDtk World Processor")]
+[ContentImporter(".ldtk", DisplayName = "LDtkImporter", DefaultProcessor = "LDtkProcessor")]
 public class Importer1 : ContentImporter<TImport>
 {
     public override TImport Import(string filename, ContentImporterContext context)
     {
-        using (var reader = new StreamReader(filename)){
-            return reader.ReadToEnd();
+        string stream;
+        using (var reader = new StreamReader(filename))
+        {
+            stream = reader.ReadToEnd();
         }
+
+        return stream;
     }
 }

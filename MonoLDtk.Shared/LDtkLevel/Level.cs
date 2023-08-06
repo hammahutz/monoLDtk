@@ -100,7 +100,7 @@ public class Level
     /// Unique instance identifier
     /// </summary>
     [JsonProperty("iid")]
-    public string Iid { get; set; }
+    public Guid Iid { get; set; }
 
     /// <summary>
     /// An array containing all Layer instances. **IMPORTANT**: if the project option "*Save

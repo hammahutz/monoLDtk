@@ -97,7 +97,7 @@ public partial class LDtk
     /// If the project isn't in MultiWorlds mode, this is the IID of the internal "dummy" World.
     /// </summary>
     [JsonProperty("dummyWorldIid")]
-    public string DummyWorldIid { get; set; }
+    public Guid DummyWorldIid { get; set; }
 
     /// <summary>
     /// If TRUE, the exported PNGs will include the level background (color or image).
@@ -145,7 +145,7 @@ public partial class LDtk
     /// Unique project identifier
     /// </summary>
     [JsonProperty("iid")]
-    public string Iid { get; set; }
+    public Guid Iid { get; set; }
 
     /// <summary>
     /// "Image export" option when saving project. Possible values: `None`, `OneImagePerLayer`,

@@ -83,7 +83,7 @@ public class LayerInstance
     /// Unique layer instance identifier
     /// </summary>
     [JsonProperty("iid")]
-    public string Iid { get; set; }
+    public Guid Iid { get; set; }
 
     /// <summary>
     /// **WARNING**: this deprecated value is no longer exported since version 1.0.0  Replaced

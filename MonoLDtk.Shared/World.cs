@@ -28,7 +28,7 @@ public class World
     /// Unique instance identifer
     /// </summary>
     [JsonProperty("iid")]
-    public string Iid { get; set; }
+    public Guid Iid { get; set; }
 
     /// <summary>
     /// All levels from this world. The order of this array is only relevant in

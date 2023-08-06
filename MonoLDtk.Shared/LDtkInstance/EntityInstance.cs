@@ -67,7 +67,7 @@ public class EntityInstance
     /// Unique instance identifier
     /// </summary>
     [JsonProperty("iid")]
-    public string Iid { get; set; }
+    public Guid Iid { get; set; }
 
     /// <summary>
     /// Pixel coordinates (`[x,y]` format) in current level coordinate space. Don't forget

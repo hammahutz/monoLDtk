@@ -8,23 +8,23 @@ public class ReferenceToAnEntityInstance
     /// IID of the refered EntityInstance
     /// </summary>
     [JsonProperty("entityIid")]
-    public string EntityIid { get; set; }
+    public Guid EntityIid { get; set; }
 
     /// <summary>
     /// IID of the LayerInstance containing the refered EntityInstance
     /// </summary>
     [JsonProperty("layerIid")]
-    public string LayerIid { get; set; }
+    public Guid LayerIid { get; set; }
 
     /// <summary>
     /// IID of the Level containing the refered EntityInstance
     /// </summary>
     [JsonProperty("levelIid")]
-    public string LevelIid { get; set; }
+    public Guid LevelIid { get; set; }
 
     /// <summary>
     /// IID of the World containing the refered EntityInstance
     /// </summary>
     [JsonProperty("worldIid")]
-    public string WorldIid { get; set; }
+    public Guid WorldIid { get; set; }
 }

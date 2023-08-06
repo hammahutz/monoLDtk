@@ -15,7 +15,7 @@ public class NeighbourLevel
     /// Neighbour Instance Identifier
     /// </summary>
     [JsonProperty("levelIid")]
-    public string LevelIid { get; set; }
+    public Guid LevelIid { get; set; }
 
     /// <summary>
     /// **WARNING**: this deprecated value is no longer exported since version 1.2.0  Replaced

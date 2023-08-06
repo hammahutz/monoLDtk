@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Draft/bin/Debug/net7.0/Draft.dll",
+            "program": "${workspaceFolder}/MonoLDtk.Example/bin/Debug/net6.0/MonoLDtk.Example.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Draft",
+            "cwd": "${workspaceFolder}/MonoLDtk.Example",
             "console": "internalConsole",
             "stopAtEntry": false
         },
