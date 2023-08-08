@@ -1,14 +1,11 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 
-using Newtonsoft.Json;
-
-using TInput = System.String;
-using TOutput = MonoLDtk.Shared.LDtk;
+using MonoLDtk.Shared;
 
 namespace MonoLDtk.Pipeline;
-
 [ContentProcessor(DisplayName = "LDtkProcessor")]
-class Processor1 : ContentProcessor<TInput, TOutput>
+class LDtkProcessor : ContentProcessor<string, LDtk>
 {
-    public override TOutput Process(TInput input, ContentProcessorContext context) => JsonConvert.DeserializeObject<TOutput>(input);
+    public override LDtk Process(string input, ContentProcessorContext context) => new LDtk(input);
+
 }

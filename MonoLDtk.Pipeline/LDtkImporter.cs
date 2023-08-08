@@ -2,21 +2,18 @@
 
 using Microsoft.Xna.Framework.Content.Pipeline;
 
-using TImport = System.String;
-
 namespace MonoLDtk.Pipeline;
 
 [ContentImporter(".ldtk", DisplayName = "LDtkImporter", DefaultProcessor = "LDtkProcessor")]
-public class Importer1 : ContentImporter<TImport>
+public class LDtkImporter : ContentImporter<string>
 {
-    public override TImport Import(string filename, ContentImporterContext context)
+    public override string Import(string filename, ContentImporterContext context)
     {
         string stream;
         using (var reader = new StreamReader(filename))
         {
             stream = reader.ReadToEnd();
         }
-
         return stream;
     }
 }

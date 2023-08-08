@@ -11,7 +11,7 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private LDtk level;
+    private LDtk world;
 
     public Game1()
     {
@@ -29,8 +29,7 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        level = Content.Load<LDtk>("test");
-
+        world = Content.Load<LDtk>("World/world1");
     }
 
     protected override void Update(GameTime gameTime)

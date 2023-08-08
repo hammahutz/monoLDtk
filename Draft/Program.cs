@@ -3,7 +3,7 @@
 using Newtonsoft.Json;
 
 string line;
-LDtk ldtk;
+LDtk ldtk = new LDtk();
 
 using (StreamReader reader = new StreamReader("test.ldtk"))
 {
@@ -11,5 +11,3 @@ using (StreamReader reader = new StreamReader("test.ldtk"))
 }
 
 
-ldtk = JsonConvert.DeserializeObject<LDtk>(line);
-System.Console.WriteLine(ldtk.ToString());

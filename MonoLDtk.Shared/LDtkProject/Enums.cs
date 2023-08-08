@@ -1,0 +1,21 @@
+﻿namespace MonoLDtk.Shared.LDtkProject;
+
+internal enum AllowedRefs { Any, OnlySame, OnlySpecificEntity, OnlyTags };
+internal enum BgPos { Contain, Cover, CoverDirty, Repeat, Unscaled };
+internal enum Checker { Horizontal, None, Vertical };
+internal enum EditorDisplayMode { ArrayCountNoLabel, ArrayCountWithLabel, EntityTile, Hidden, LevelTile, NameAndValue, PointPath, PointPathLoop, PointStar, Points, RadiusGrid, RadiusPx, RefLinkBetweenCenters, RefLinkBetweenPivots, ValueOnly };
+internal enum EditorDisplayPos { Above, Beneath, Center };
+internal enum EditorLinkStyle { ArrowsLine, CurvedArrow, DashedLine, StraightArrow, ZigZag };
+internal enum EmbedAtlas { LdtkIcons };
+internal enum Flag { DiscardPreCsvIntGrid, ExportPreCsvIntGridFormat, IgnoreBackupSuggest, MultiWorlds, PrependIndexToLevelFileNames, UseMultilinesType };
+internal enum IdentifierStyle { Capitalize, Free, Lowercase, Uppercase };
+internal enum ImageExportMode { LayersAndLevels, None, OneImagePerLayer, OneImagePerLevel };
+internal enum LimitBehavior { DiscardOldOnes, MoveLastOne, PreventAdding };
+internal enum LimitScope { PerLayer, PerLevel, PerWorld };
+internal enum When { AfterLoad, AfterSave, BeforeSave, Manual };
+internal enum WorldLayout { Free, GridVania, LinearHorizontal, LinearVertical };
+internal enum RenderMode { Cross, Ellipse, Rectangle, Tile };
+internal enum TextLanguageMode { LangC, LangHaxe, LangJs, LangJson, LangLog, LangLua, LangMarkdown, LangPython, LangRuby, LangXml };
+internal enum TileMode { Single, Stamp };
+internal enum TileRenderMode { Cover, FitInside, FullSizeCropped, FullSizeUncropped, NineSlice, Repeat, Stretch };
+internal enum TypeEnum { AutoLayer, Entities, IntGrid, Tiles };
