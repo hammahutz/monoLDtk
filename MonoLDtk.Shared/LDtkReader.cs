@@ -10,6 +10,6 @@ using Newtonsoft.Json;
 namespace MonoLDtk.Shared;
 public class LDtkReader : ContentTypeReader<LDtk>
 {
-    protected override LDtk Read(ContentReader input, LDtk existingInstance) => new LDtk(input.ReadString());
+    protected override LDtk Read(ContentReader input, LDtk existingInstance) => existingInstance ?? new LDtk(input.ReadString());
 
 }

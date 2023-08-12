@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoLDtk.Example", "MonoLDtk.Example\MonoLDtk.Example.csproj", "{77ACCB39-FE86-4DDC-84D3-2B8ED8445EB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoLDtk.Example", "MonoLDtk.Example\MonoLDtk.Example.csproj", "{F9967CBC-E27B-4A32-9968-805D570A0DAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoLDtk.Pipeline", "MonoLDtk.Pipeline\MonoLDtk.Pipeline.csproj", "{00C9A30B-9DF5-488B-8E38-62C18CBA9707}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoLDtk.Pipeline", "MonoLDtk.Pipeline\MonoLDtk.Pipeline.csproj", "{A0D8B502-9FCD-47AA-A127-0F3BE2D886E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoLDtk.Shared", "MonoLDtk.Shared\MonoLDtk.Shared.csproj", "{17A464AA-9D46-4E2A-B862-B5D06F9E4B5F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draft", "Draft\Draft.csproj", "{762681E4-66CF-44E9-9A1D-79D6E1D87356}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoLDtk.Shared", "MonoLDtk.Shared\MonoLDtk.Shared.csproj", "{45981A10-FE9C-4B65-84CE-7A09982FEFDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,21 +18,17 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77ACCB39-FE86-4DDC-84D3-2B8ED8445EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77ACCB39-FE86-4DDC-84D3-2B8ED8445EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77ACCB39-FE86-4DDC-84D3-2B8ED8445EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77ACCB39-FE86-4DDC-84D3-2B8ED8445EB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00C9A30B-9DF5-488B-8E38-62C18CBA9707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00C9A30B-9DF5-488B-8E38-62C18CBA9707}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00C9A30B-9DF5-488B-8E38-62C18CBA9707}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00C9A30B-9DF5-488B-8E38-62C18CBA9707}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17A464AA-9D46-4E2A-B862-B5D06F9E4B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17A464AA-9D46-4E2A-B862-B5D06F9E4B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17A464AA-9D46-4E2A-B862-B5D06F9E4B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17A464AA-9D46-4E2A-B862-B5D06F9E4B5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{762681E4-66CF-44E9-9A1D-79D6E1D87356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{762681E4-66CF-44E9-9A1D-79D6E1D87356}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{762681E4-66CF-44E9-9A1D-79D6E1D87356}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{762681E4-66CF-44E9-9A1D-79D6E1D87356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9967CBC-E27B-4A32-9968-805D570A0DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9967CBC-E27B-4A32-9968-805D570A0DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9967CBC-E27B-4A32-9968-805D570A0DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9967CBC-E27B-4A32-9968-805D570A0DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D8B502-9FCD-47AA-A127-0F3BE2D886E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D8B502-9FCD-47AA-A127-0F3BE2D886E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D8B502-9FCD-47AA-A127-0F3BE2D886E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D8B502-9FCD-47AA-A127-0F3BE2D886E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45981A10-FE9C-4B65-84CE-7A09982FEFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45981A10-FE9C-4B65-84CE-7A09982FEFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45981A10-FE9C-4B65-84CE-7A09982FEFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45981A10-FE9C-4B65-84CE-7A09982FEFDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
