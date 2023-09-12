@@ -30,7 +30,7 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         world = Content.Load<LDtk>("World/world1");
-        world.LoadContent(Content);
+        world.LoadWorld(GameData.World1);
     }
 
     protected override void Update(GameTime gameTime)

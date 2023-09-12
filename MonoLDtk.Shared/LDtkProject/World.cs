@@ -7,18 +7,6 @@ namespace MonoLDtk.Shared.LDtkProject;
 internal class World
 {
     /// <summary>
-    /// Default new level height
-    /// </summary>
-    [JsonProperty("defaultLevelHeight")]
-    internal long DefaultLevelHeight { get; set; }
-
-    /// <summary>
-    /// Default new level width
-    /// </summary>
-    [JsonProperty("defaultLevelWidth")]
-    internal long DefaultLevelWidth { get; set; }
-
-    /// <summary>
     /// User defined unique identifier
     /// </summary>
     [JsonProperty("identifier")]
@@ -37,6 +25,18 @@ internal class World
     /// </summary>
     [JsonProperty("levels")]
     internal Level[] Levels { get; set; }
+
+    /// <summary>
+    /// Default new level height
+    /// </summary>
+    [JsonProperty("defaultLevelHeight")]
+    internal long DefaultLevelHeight { get; set; }
+
+    /// <summary>
+    /// Default new level width
+    /// </summary>
+    [JsonProperty("defaultLevelWidth")]
+    internal long DefaultLevelWidth { get; set; }
 
     /// <summary>
     /// Height of the world grid in pixels.
