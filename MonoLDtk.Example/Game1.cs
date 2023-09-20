@@ -29,8 +29,8 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        world = Content.Load<LDtk>("World/world1");
-        world.LoadWorld(GameData.World1);
+        world = Content.Load<LDtk>(GameData.World.Map1);
+        world.LoadWorld(Content);
     }
 
     protected override void Update(GameTime gameTime)

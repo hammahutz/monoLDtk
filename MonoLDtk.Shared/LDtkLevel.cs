@@ -1,21 +1,32 @@
-﻿using MonoLDtk.Shared.LDtkProject.LDtkInstance;
+﻿using System.Linq;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+using MonoLDtk.Shared.LDtkProject.LDtkInstance;
 using MonoLDtk.Shared.LDtkProject.LDtkLevel;
 
 namespace MonoLDtk.Shared;
 
-public class LDtkLevel
+internal class LDtkLevel
 {
-    public string Identifier { get; private set; }
-    public Guid Iid { get; private set; }
-    public LDtkLayer[] Layers { get; private set; }
-    public LDtkLayerType Type { get; private set; }
+    internal string Identifier { get; private set; }
+    internal Guid Iid { get; private set; }
 
-    internal LDtkLevel(Level level)
+    internal Vector2 WorldPosition;
+    internal List<LDtkLayer> Layers { get; private set; }
+
+    internal LDtkLevel(Level level, ContentManager content)
     {
         Identifier = level.Identifier;
         Iid = level.Iid;
+        WorldPosition = new Vector2(level.WorldX, level.WorldY);
+
         Layers = level.LayerInstances
-        .Select(li => new LDtkLayer(li))
-        .ToArray(); 
+        .Select(li => new LDtkLayer(li, content, WorldPosition))
+        .ToList();
     }
+
+    internal void Draw(SpriteBatch spritebatch) => Layers.ForEach(l => l.Draw(spritebatch));
 }

@@ -15,7 +15,6 @@ public class LDtk
     public string JSON => JsonConvert.SerializeObject(LDtkData) ?? "{}";
     public override string ToString() => JSON;
 
-    public Dictionary<long, LDtkTileset> Tilesets { get; private set; } = new Dictionary<long, LDtkTileset>();
     public Dictionary<string, LDtkWorld> Worlds { get; private set; }
 
     public LDtk() => LDtkData = new LDtkData();
@@ -25,17 +24,10 @@ public class LDtk
 
     public void LoadWorld(ContentManager content)
     {
-        Tilesets = LDtkData.Defs.Tilesets
-        .Select(x => new LDtkTileset(x.Uid, x.RelPath, content))
-        .ToDictionary(y => y.Id);
-
         Worlds = LDtkData.Worlds
-        .Select(w => new LDtkWorld(w))
+        .Select(w => new LDtkWorld(w, content))
         .ToDictionary(w => w.Identifier);
     }
 
-    public void Draw(SpriteBatch spriteBatch)
-    {
-        Worlds[world].Draw(spriteBatch);
-    }
+    public void Draw(SpriteBatch spriteBatch) => Worlds["World"].Draw(spriteBatch);
 }

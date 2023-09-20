@@ -7,13 +7,14 @@ namespace MonoLDtk.Shared;
 
 public class LDtkTile
 {
-    internal LDtkTile(TileInstance tileInstance, int tileSize)
+    private float _alpha = 1;
+    internal LDtkTile(TileInstance tileInstance, int tileSize, Vector2 worldPosition)
     {
 
         Id = tileInstance.T;
         Alpha = (float)tileInstance.A;
         Flip = (SpriteEffects)(int)tileInstance.F;
-        DestinationRectangle = new Rectangle((int)tileInstance.Px[0], (int)tileInstance.Px[1], tileSize, tileSize);
+        DestinationRectangle = new Rectangle((int)tileInstance.Px[0] + (int)worldPosition.X, (int)tileInstance.Px[1] + (int)worldPosition.Y, tileSize, tileSize);
         SourceRectangle = new Rectangle((int)tileInstance.Src[0], (int)tileInstance.Src[1], tileSize, tileSize);
     }
 
@@ -24,12 +25,12 @@ public class LDtkTile
     {
         get
         {
-            return Alpha;
+            return _alpha;
         }
         private set
         {
-            Alpha = value;
-            Color = new Color(Color, Alpha);
+            _alpha = value;
+            Color = new Color(Color, _alpha);
         }
     }
     public Color Color { get; private set; } = Color.White;
