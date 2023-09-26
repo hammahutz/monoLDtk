@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Microsoft.Xna.Framework.Content;
 
-using Newtonsoft.Json;
 
 namespace MonoLDtk.Shared;
 public class LDtkReader : ContentTypeReader<LDtk>
