@@ -15,6 +15,8 @@ internal class LDtkLevel
     internal Guid Iid { get; private set; }
 
     internal Vector2 WorldPosition;
+
+    public long WorldDepth { get; private set; }
     internal List<LDtkLayer> Layers { get; private set; }
 
     internal LDtkLevel(Level level, ContentManager content)
@@ -22,6 +24,7 @@ internal class LDtkLevel
         Identifier = level.Identifier;
         Iid = level.Iid;
         WorldPosition = new Vector2(level.WorldX, level.WorldY);
+        WorldDepth = level.WorldDepth;
 
         Layers = level.LayerInstances
         .Select(li => new LDtkLayer(li, content, WorldPosition))

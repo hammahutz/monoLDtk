@@ -21,6 +21,7 @@ public class LDtkWorld
 
         Levels = world.Levels
         .Select(l => new LDtkLevel(l, content))
+        .OrderBy(l => l.WorldDepth)
         .ToList();
     }
 
