@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoLDtk.Example.GameObjecs;
 using MonoLDtk.Example.GameObjects;
-using MonoLDtk.Example.GameObjects.Components;
 using MonoLDtk.Shared;
+using MonoLDtk.Shared.GameObjects;
+using MonoLDtk.Shared.LDtkProject;
 
 
 namespace MonoLDtk.Example;
@@ -26,7 +28,10 @@ public class Game1 : Game
     protected override void Initialize()
     {
         GameObjectHandler = new GameObjectHandler();
-        GameObjectHandler.Add(new Player());
+
+        GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
+        GameObjectHandler.Add(new Player(GameObjectHandler));
+
 
         base.Initialize();
     }
@@ -34,10 +39,6 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        world = Content.Load<LDtk>(Data.World.Map1);
-        world.LoadWorld(Content);
-
         GameObjectHandler.Load(Content);
     }
 
@@ -57,7 +58,6 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
 
-        world.Draw(_spriteBatch);
         GameObjectHandler.Draw(_spriteBatch);
 
         _spriteBatch.End();

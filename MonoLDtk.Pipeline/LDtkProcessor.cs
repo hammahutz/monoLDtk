@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 
-using MonoLDtk.Shared;
+using MonoLDtk.Shared.LDtkProject;
 
 namespace MonoLDtk.Pipeline;
 [ContentProcessor(DisplayName = "LDtkProcessor")]
