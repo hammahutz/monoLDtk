@@ -15,8 +15,8 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private LDtk world;
     public GameObjectHandler GameObjectHandler;
+    public Art Art;
 
     public Game1()
     {
@@ -27,10 +27,8 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        GameObjectHandler = new GameObjectHandler();
-
-        GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
-        GameObjectHandler.Add(new Player(GameObjectHandler));
+        Art = new Art();
+        GameObjectHandler = new GameObjectHandler(Art);
 
 
         base.Initialize();
@@ -40,6 +38,10 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         GameObjectHandler.Load(Content);
+
+        GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
+        GameObjectHandler.Add(new Player(GameObjectHandler));
+
     }
 
     protected override void Update(GameTime gameTime)

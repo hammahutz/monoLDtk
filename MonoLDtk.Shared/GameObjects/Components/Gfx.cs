@@ -20,7 +20,7 @@ public class Gfx : IDraw
 
     public Gfx(string? texturePath) => TexturePath = texturePath;
 
-    public void Load(ContentManager content) => Texture = content.Load<Texture2D>(TexturePath);
+    public void Load(GameAssetsManager gameAssetsManager) => Texture = gameAssetsManager.Get<Texture2D>(TexturePath);
 
     public void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(Texture, Position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);
 

@@ -6,20 +6,39 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace MonoLDtk.Shared.GameObjects;
 
 public class GameObjectHandler
 {
     private List<GameObject> _gameObjects = new List<GameObject>();
+    private GameAssetsManager _gameAssetsManager;
 
-    public void Add(GameObject gameObject) => _gameObjects.Add(gameObject);
+    public GameObjectHandler(GameAssetsManager gameAssetsManager)
+    {
+        _gameAssetsManager = gameAssetsManager;
+    }
 
-    public event Action<ContentManager>? OnLoad;
+
+    public event Action<GameAssetsManager>? OnLoad;
     public event Action<GameTime>? OnUpdate;
     public event Action<SpriteBatch>? OnDraw;
 
-    public void Load(ContentManager content) => OnLoad?.Invoke(content);
+    public void Add(GameObject gameObject)
+    {
+        _gameObjects.Add(gameObject);
+        if (gameObject is IDraw)
+        {
+            ((IDraw)gameObject).Load(_gameAssetsManager);
+        }
+    }
+    public void Load(ContentManager contentManager)
+    {
+        _gameAssetsManager.Load(contentManager);
+        OnLoad?.Invoke(_gameAssetsManager);
+    }
+
     public void Update(GameTime gameTime)
     {
         _gameObjects
@@ -37,29 +56,6 @@ public class GameObjectHandler
 
     public void Draw(SpriteBatch spriteBatch) => OnDraw?.Invoke(spriteBatch);
 
-    // public void Load(ContentManager content) =>
-    //     _gameObjects
-    //         .Where(t => t is IDraw)
-    //         .Select(s => s as IDraw)
-    //         .ToList()
-    //         .ForEach(id => id.Load(content));
 
-    // public void Update(GameTime gameTime)
-    // {
-    //     _gameObjects = _gameObjects.Where(g => g.IsAlive).ToList();
-
-    //     _gameObjects
-    //         .Where(t => t is IUpdate)
-    //         .Select(s => s as IUpdate)
-    //         .ToList()
-    //         .ForEach(iu => iu.Update(gameTime));
-    // }
-
-    // public void Draw(SpriteBatch spriteBatch) =>
-    //     _gameObjects
-    //         .Where(t => t is IDraw)
-    //         .Select(s => s as IDraw)
-    //         .ToList()
-    //         .ForEach(id => id.Draw(spriteBatch));
 
 }

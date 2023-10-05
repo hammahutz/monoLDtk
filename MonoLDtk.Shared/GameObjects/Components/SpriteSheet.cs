@@ -29,9 +29,9 @@ public class SpriteSheet : IDraw
     }
     public SpriteSheet(string texturePath) => Gfx = new Gfx(texturePath) { SourceRectangle = new Rectangle(CurrentGrid, TileDimension) };
 
-    public void Load(ContentManager content)
+    public void Load(GameAssetsManager gameAssetsManager)
     {
-        Gfx.Load(content);
+        Gfx.Load(gameAssetsManager);
 
         GridDimension = new Point
         (

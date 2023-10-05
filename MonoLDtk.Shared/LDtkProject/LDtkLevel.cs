@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using MonoLDtk.Shared.GameObjects;
 using MonoLDtk.Shared.LDtkProject.Data.LDtkInstance;
 using MonoLDtk.Shared.LDtkProject.Data.LDtkLevel;
 
@@ -19,7 +20,7 @@ internal class LDtkLevel
     public long WorldDepth { get; private set; }
     internal List<LDtkLayer> Layers { get; private set; }
 
-    internal LDtkLevel(Level level, ContentManager content)
+    internal LDtkLevel(Level level, GameAssetsManager content)
     {
         Identifier = level.Identifier;
         Iid = level.Iid;

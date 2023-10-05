@@ -27,7 +27,7 @@ public class Animation : IDraw, IUpdate
         FramePerSecond = framePerSecond;
     }
 
-    public void Load(ContentManager content) => SpriteSheet.Load(content);
+    public void Load(GameAssetsManager gameAssetsManager) => SpriteSheet.Load(gameAssetsManager);
 
     public void Update(GameTime gameTime)
     {

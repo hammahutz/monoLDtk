@@ -8,34 +8,24 @@ public abstract class GameObject
     {
         if (this is IDraw)
         {
-            IDraw drawable = this as IDraw;
-            handler.OnLoad += drawable.Load;
-            handler.OnDraw += drawable.Draw;
+            handler.OnLoad += ((IDraw)this).Load;
+            handler.OnDraw += ((IDraw)this).Draw;
         }
         if (this is IUpdate)
-        {
-            IUpdate? updatable = this as IUpdate;
-            handler.OnUpdate += updatable.Update;
-        }
+            handler.OnUpdate += ((IUpdate)this).Update;
     }
 
     public void DestroyGameObject(GameObjectHandler handler)
     {
-        if (this is IDraw)
+        Destroy();
+        if (this is IDraw draw)
         {
-            IDraw drawable = this as IDraw;
-            handler.OnLoad -= drawable.Load;
-            handler.OnDraw -= drawable.Draw;
+            handler.OnLoad -= ((IDraw)this).Load;
+            handler.OnDraw -= draw.Draw;
         }
-        if (this is IUpdate)
-        {
-            IUpdate? updatable = this as IUpdate;
-            handler.OnUpdate -= updatable.Update;
-        }
+        if (this is IUpdate update)
+            handler.OnUpdate -= update.Update;
     }
 
-    public virtual void Destroy()
-    {
-        
-    }
+    protected virtual void Destroy() { }
 }

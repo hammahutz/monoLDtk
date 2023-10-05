@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using MonoLDtk.Shared.GameObjects;
 using MonoLDtk.Shared.LDtkProject.Data.LDtkInstance;
 
 namespace MonoLDtk.Shared.LDtkProject;
@@ -20,7 +21,7 @@ public class LDtkLayer
 
     public List<LDtkTile> Tiles { get; set; }
 
-    internal LDtkLayer(LayerInstance layerInstance, ContentManager content, Vector2 worldPosition)
+    internal LDtkLayer(LayerInstance layerInstance, GameAssetsManager content, Vector2 worldPosition)
     {
         Iid = layerInstance.Iid;
         TilesetDefUid = layerInstance.TilesetDefUid;
@@ -50,11 +51,11 @@ public class LDtkLayer
         return relPath.Substring(textureIndex, filetypeIndex - textureIndex);
     }
 
-    internal void LoadTileSheet(ContentManager content)
+    internal void LoadTileSheet(GameAssetsManager content)
     {
         if (Type == LDtkLayerType.AutoLayer || Type == LDtkLayerType.Tiles)
         {
-            TileSheet = content.Load<Texture2D>(TilesetRelPath);
+            TileSheet = content.Get<Texture2D>(TilesetRelPath);
         }
     }
 

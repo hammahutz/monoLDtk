@@ -5,7 +5,7 @@ namespace MonoLDtk.Shared.GameObjects;
 
 public interface IDraw
 {
-    public void Load(ContentManager content);
+    public void Load(GameAssetsManager gameAssetsManager);
     public void Draw(SpriteBatch spriteBatch);
 }
 

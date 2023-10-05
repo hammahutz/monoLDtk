@@ -8,24 +8,22 @@ namespace MonoLDtk.Example.GameObjecs
 {
     public class World : GameObject, IDraw
     {
-        private string _worldPath;
-        private LDtk ldtk;
-        public World(GameObjectHandler handler, string path) : base(handler)
-        {
-            _worldPath = path;
+        private readonly string _worldPath;
+        private LDtk _ldtk;
+        public World(GameObjectHandler handler, string path) : base(handler) => _worldPath = path;
 
+        public void Load(GameAssetsManager gameAssetsManager)
+        {
+            _ldtk = gameAssetsManager.Get<LDtk>(_worldPath);
+            _ldtk.LoadWorld(gameAssetsManager);
         }
 
-        public void Load(ContentManager content)
+        public void Load(ContentManager contentManager)
         {
-            ldtk = content.Load<LDtk>(_worldPath);
-            ldtk.LoadWorld(content);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            ldtk.Draw(spriteBatch);
-        }
+        public void Draw(SpriteBatch spriteBatch) => _ldtk.Draw(spriteBatch);
 
-    }
+       }
+
 }

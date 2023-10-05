@@ -44,7 +44,7 @@ public class AnimationController : IDraw, IUpdate
         CurrentAnimation = _animations[animationName];
     }
 
-    public void Load(ContentManager content) => _animations.ToList().ForEach(a => a.Value.Load(content));
+    public void Load(GameAssetsManager gameAssetsManager) => _animations.ToList().ForEach(a => a.Value.Load(gameAssetsManager));
 
     public void Update(GameTime gameTime) => CurrentAnimation.Update(gameTime);
 
