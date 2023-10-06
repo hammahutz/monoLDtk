@@ -15,15 +15,12 @@ namespace MonoLDtk.Shared.State
     {
         protected SpriteBatch? _spriteBatch;
         protected ContentManager? _contentManager;
-        protected GameObjectHandler _gameObjectHandler;
-        protected abstract GameAssetsManager _gameAssetManager;
         public abstract void Initialize();
 
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager contentManager)
         {
             _spriteBatch = new SpriteBatch(graphicsDevice);
             _contentManager = contentManager;
-            _gameObjectHandler = new GameObjectHandler(_gameAssetManager);
 
             LoadContentState();
         }
@@ -37,9 +34,9 @@ namespace MonoLDtk.Shared.State
 
         public void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
+            _spriteBatch?.Begin();
             DrawState(gameTime);
-            _spriteBatch.End();
+            _spriteBatch?.End();
         }
 
         protected abstract void DrawState(GameTime gameTime);
