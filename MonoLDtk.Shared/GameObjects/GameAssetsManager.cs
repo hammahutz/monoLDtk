@@ -12,12 +12,12 @@ namespace MonoLDtk.Shared.GameObjects
 {
     public abstract class GameAssetsManager
     {
-        public event Action<ContentManager>? OnLoadAction;
-        public event Action<ContentManager>? OnUnloadAction;
+        public event Action? OnLoadAction;
+        public event Action? OnUnloadAction;
 
-        public void Load(ContentManager contentManager) => OnLoadAction?.Invoke(contentManager);
+        public void Load() => OnLoadAction?.Invoke();
 
-        public void Unload(ContentManager contentManager) => OnUnloadAction?.Invoke(contentManager);
+        public void Unload() => OnUnloadAction?.Invoke();
 
         public abstract T Get<T>(string path);
     }

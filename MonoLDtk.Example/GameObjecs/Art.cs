@@ -19,30 +19,35 @@ namespace MonoLDtk.Example.GameObjecs
 
         public GameAssets<Texture2D> Textures { get; private set; }
         public GameAssets<LDtk> World { get; private set; }
-        public Art()
+
+
+        public Art(ContentManager contentManager)
         {
-            Textures = new GameAssets<Texture2D>(this, new List<string>{
+            Textures = new GameAssets<Texture2D>(this, contentManager, new List<string>{
                 Data.Textures.HeroIdle,
                 Data.Textures.HeroRun,
                 Data.Textures.LavaTileset
             });
 
-            World = new GameAssets<LDtk>(this, new List<string>{
+            World = new GameAssets<LDtk>(this, contentManager, new List<string>{
                 Data.World.Map1
             });
+
         }
 
         public override T Get<T>(string path)
         {
+            Type t = typeof(T);
 
             if (Textures.IsType<T>())
             {
-                return  Textures.Get<T>(path);
+                return Textures.Get<T>(path);
             }
             if (World.IsType<T>())
             {
                 return World.Get<T>(path);
             }
+
             return default;
         }
     }

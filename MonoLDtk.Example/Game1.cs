@@ -27,8 +27,6 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        Art = new Art();
-        GameObjectHandler = new GameObjectHandler(Art);
 
 
         base.Initialize();
@@ -37,7 +35,7 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        GameObjectHandler.Load(Content);
+        GameObjectHandler = new GameObjectHandler(new Art(Content));
 
         GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
         GameObjectHandler.Add(new Player(GameObjectHandler));

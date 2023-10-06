@@ -18,6 +18,8 @@ public class GameObjectHandler
     public GameObjectHandler(GameAssetsManager gameAssetsManager)
     {
         _gameAssetsManager = gameAssetsManager;
+        _gameAssetsManager.Load();
+        OnLoad?.Invoke(_gameAssetsManager);
     }
 
 
@@ -32,11 +34,6 @@ public class GameObjectHandler
         {
             ((IDraw)gameObject).Load(_gameAssetsManager);
         }
-    }
-    public void Load(ContentManager contentManager)
-    {
-        _gameAssetsManager.Load(contentManager);
-        OnLoad?.Invoke(_gameAssetsManager);
     }
 
     public void Update(GameTime gameTime)

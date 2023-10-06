@@ -47,4 +47,5 @@ public class Player : GameObject, IUpdate, IDraw
     }
 
     public void Draw(SpriteBatch spriteBatch) => _animation.Draw(spriteBatch);
+
 }

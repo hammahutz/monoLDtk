@@ -18,10 +18,6 @@ namespace MonoLDtk.Example.GameObjecs
             _ldtk.LoadWorld(gameAssetsManager);
         }
 
-        public void Load(ContentManager contentManager)
-        {
-        }
-
         public void Draw(SpriteBatch spriteBatch) => _ldtk.Draw(spriteBatch);
 
        }
