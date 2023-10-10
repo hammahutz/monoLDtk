@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using MonoLDtk.Example.GameObjecs;
-using MonoLDtk.Example.GameObjects;
-using MonoLDtk.Shared;
-using MonoLDtk.Shared.GameObjects;
-using MonoLDtk.Shared.LDtkProject;
+using MonoLDtk.Example.States;
 
 
 namespace MonoLDtk.Example;
@@ -15,8 +11,7 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    public GameObjectHandler GameObjectHandler;
-    public Art Art;
+    public GameStateManager GameStateManager;
 
     public Game1()
     {
@@ -28,17 +23,17 @@ public class Game1 : Game
     protected override void Initialize()
     {
 
-
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        GameObjectHandler = new GameObjectHandler(new Art(Content));
+        // GameObjectHandler = new GameObjectHandler(new Art(Content));
 
-        GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
-        GameObjectHandler.Add(new Player(GameObjectHandler));
+        // GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
+        // GameObjectHandler.Add(new Player(GameObjectHandler));
+        GameStateManager = new GameStateManager(Content, GameStateEnum.Splash);
 
     }
 
@@ -47,7 +42,8 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-            GameObjectHandler.Update(gameTime);
+            // GameObjectHandler.Update(gameTime);
+            GameStateManager.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -58,7 +54,8 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
 
-        GameObjectHandler.Draw(_spriteBatch);
+        // GameObjectHandler.Draw(_spriteBatch);
+        GameStateManager.Draw(_spriteBatch);
 
         _spriteBatch.End();
 

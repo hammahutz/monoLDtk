@@ -11,34 +11,32 @@ using MonoLDtk.Shared.GameObjects;
 
 namespace MonoLDtk.Shared.State
 {
-    public abstract class GameState
+    public abstract class GameState<EState> where EState : Enum
     {
-        protected SpriteBatch? _spriteBatch;
-        protected ContentManager? _contentManager;
+        public ContentManager Content { get; private set; }
+
+        public GameState(ContentManager content) => Content = content;
+        public event Action<EState>? OnChangeState;
+
+
+        public void ChangeState(EState nextState) => OnChangeState?.Invoke(nextState);
+        public void Enter()
+        {
+            Initialize();
+            LoadContent();
+
+        }
+        public void Exit()
+        {
+            UnloadContent();
+            Depose();
+        }
         public abstract void Initialize();
+        public abstract void LoadContent();
+        public abstract void Update(GameTime gameTime);
+        public abstract void Draw(SpriteBatch spriteBatch);
+        public abstract void UnloadContent();
+        public abstract void Depose();
 
-        public void LoadContent(GraphicsDevice graphicsDevice, ContentManager contentManager)
-        {
-            _spriteBatch = new SpriteBatch(graphicsDevice);
-            _contentManager = contentManager;
-
-            LoadContentState();
-        }
-        protected abstract void LoadContentState();
-
-        public void Update(GameTime gameTime)
-        {
-            UpdateState(gameTime);
-        }
-        protected abstract void UpdateState(GameTime gameTime);
-
-        public void Draw(GameTime gameTime)
-        {
-            _spriteBatch?.Begin();
-            DrawState(gameTime);
-            _spriteBatch?.End();
-        }
-
-        protected abstract void DrawState(GameTime gameTime);
     }
 }
