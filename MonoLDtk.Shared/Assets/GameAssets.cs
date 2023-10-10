@@ -23,7 +23,7 @@ namespace MonoLDtk.Shared.GameObjects
         public void Load() => AssetPaths?.ForEach(path => _assets.Add(path, _contentManager.Load<T>(path)));
         public void Unload() => _contentManager.UnloadAssets(AssetPaths);
 
-        public T Get(string path) => _assets[path];
+        private T Get(string path) => _assets[path];
 
         public bool IsType<Y>()
         {
@@ -35,7 +35,11 @@ namespace MonoLDtk.Shared.GameObjects
         }
         public Y Get<Y>(string path)
         {
-            return (Y)Convert.ChangeType(Get(path), typeof(Y));
+            if (IsType<Y>())
+            {
+                return (Y)Convert.ChangeType(Get(path), typeof(Y));
+            }
+            return default;
         }
     }
 }
