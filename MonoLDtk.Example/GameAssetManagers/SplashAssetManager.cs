@@ -7,20 +7,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 using MonoLDtk.Example.GameObjecs;
 using MonoLDtk.Shared.GameObjects;
+using MonoLDtk.Shared.LDtkProject;
 
 namespace MonoLDtk.Example.GameAssetManagers;
 
 class SplashAssetManager : GameAssetsManager
 {
     GameAssets<Texture2D> _textures;
-    GameAssets<World> _worlds;
+    GameAssets<LDtk> _worlds;
     public SplashAssetManager(ContentManager content)
     {
         _textures = new GameAssets<Texture2D>(this, content, new List<string>{
             Data.Textures.HeroIdle,
             Data.Textures.HeroRun,
+            Data.Textures.LavaTileset
         });
-        _worlds = new GameAssets<World>(this, content, new List<string>{
+        _worlds = new GameAssets<LDtk>(this, content, new List<string>{
             Data.World.Map1
         });
     }

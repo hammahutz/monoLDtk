@@ -22,38 +22,41 @@ public class GameObjectHandler
     }
 
 
-    public event Action<GameAssetsManager>? OnLoad;
     public event Action<GameTime>? OnUpdate;
     public event Action<SpriteBatch>? OnDraw;
 
     public void Add(GameObject gameObject)
     {
-        _gameObjects?.Add(gameObject);
+        gameObject.Initialize(this);
+
+
         if (gameObject is IDraw)
         {
             ((IDraw)gameObject).Load(_gameAssetsManager);
         }
+
+        _gameObjects?.Add(gameObject);
     }
 
-    public void Update(GameTime gameTime)
-    {
-        RemoveExpiredGameObjects();
-        OnUpdate?.Invoke(gameTime);
-    }
     public void RemoveExpiredGameObjects() => _gameObjects?
         .Where(g => !g.IsAlive)
         .ToList()
         .ForEach(gameObject =>
         {
-            gameObject.DestroyGameObject(this);
+            gameObject.DeposeGameObject(this);
             _gameObjects.Remove(gameObject);
         });
+    public void Update(GameTime gameTime)
+    {
+        RemoveExpiredGameObjects();
+        OnUpdate?.Invoke(gameTime);
+    }
 
     public void Draw(SpriteBatch spriteBatch) => OnDraw?.Invoke(spriteBatch);
     public void UnloadContent() => _gameAssetsManager?.Unload();
     public void Depose()
     {
-        _gameObjects?.ForEach(g => g.DestroyGameObject(this));
+        _gameObjects?.ForEach(g => g.DeposeGameObject(this));
         _gameObjects = null;
         _gameAssetsManager = null;
     }

@@ -10,7 +10,7 @@ namespace MonoLDtk.Example.GameObjecs
     {
         private readonly string _worldPath;
         private LDtk _ldtk;
-        public World(GameObjectHandler handler, string path) : base(handler) => _worldPath = path;
+        public World(string path) => _worldPath = path;
 
         public void Load(GameAssetsManager gameAssetsManager)
         {

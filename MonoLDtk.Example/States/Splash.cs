@@ -18,15 +18,15 @@ public class Splash : GameState<GameStateEnum>
     public override void Initialize() => _gameObjectHandler = new GameObjectHandler(new SplashAssetManager(Content));
     public override void LoadContent()
     {
-        _gameObjectHandler.Add(new World(_gameObjectHandler, Data.World.Map1));
-        _gameObjectHandler.Add(new Player(_gameObjectHandler));
+        _gameObjectHandler.Add(new World(Data.World.Map1));
+        _gameObjectHandler.Add(new Player());
     }
 
     public override void Update(GameTime gameTime)
     {
         _gameObjectHandler.Update(gameTime);
 
-        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+        if (Keyboard.GetState().IsKeyDown(Keys.Enter))
         {
            ChangeState(GameStateEnum.MainMenu);
         }

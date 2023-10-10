@@ -20,8 +20,6 @@ public class Player : GameObject, IUpdate, IDraw
         new Animation(Data.Textures.HeroIdle, 5),
     });
 
-    public Player(GameObjectHandler handler) : base(handler) { }
-
     public void Load(GameAssetsManager gameAssetsManager) => _animation.Load(gameAssetsManager);
 
     public void Update(GameTime gameTime)

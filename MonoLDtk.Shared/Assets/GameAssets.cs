@@ -23,7 +23,15 @@ namespace MonoLDtk.Shared.GameObjects
         public void Load() => AssetPaths?.ForEach(path => _assets.Add(path, _contentManager.Load<T>(path)));
         public void Unload() => _contentManager.UnloadAssets(AssetPaths);
 
-        private T Get(string path) => _assets[path];
+        private T Get(string path)
+        {
+            if (!_assets.ContainsKey(path))
+            {
+                Console.WriteLine($"Warning tries to load an unload asset: {path}. Try to load the asset...");
+                _assets.Add(path, _contentManager.Load<T>(path));
+            }
+            return _assets[path];
+        }
 
         public bool IsType<Y>()
         {
