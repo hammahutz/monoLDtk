@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,32 +8,32 @@ using MonoLDtk.Example.GameAssetManagers;
 using MonoLDtk.Example.GameObjecs;
 using MonoLDtk.Example.GameObjects;
 using MonoLDtk.Shared.GameObjects;
-using MonoLDtk.Shared.State;
+using MonoLDtk.Shared.States;
 
 namespace MonoLDtk.Example.States;
 
 public class Splash : GameState<GameStateEnum>
 {
-    private GameObjectHandler _gameObjectHandler;
-    public Splash(ContentManager content) : base(content) { }
-    public override void Initialize() => _gameObjectHandler = new GameObjectHandler(new SplashAssetManager(Content));
-    public override void LoadContent()
+    public GameObjectHandler GameObjectHandler {get; private set;}
+    public Splash(ContentManager contentManager) : base(contentManager){}
+    public override void Enter()
     {
-        _gameObjectHandler.Add(new World(Data.World.Map1));
-        _gameObjectHandler.Add(new Player());
+        GameObjectHandler = new GameObjectHandler(new Art(Content));
+        GameObjectHandler.Add(new Player());
+        GameObjectHandler.Add(new World(Data.World.Map1));
     }
-
     public override void Update(GameTime gameTime)
     {
-        _gameObjectHandler.Update(gameTime);
-
-        if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-        {
-           ChangeState(GameStateEnum.MainMenu);
-        }
+        GameObjectHandler.Update(gameTime);
+    }
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+         GameObjectHandler.Draw(spriteBatch);
+    }
+    public override void Exit()
+    {
+        GameObjectHandler.UnloadContent();
+        GameObjectHandler.Depose();
     }
 
-    public override void Draw(SpriteBatch spriteBatch) => _gameObjectHandler.Draw(spriteBatch);
-    public override void UnloadContent() => _gameObjectHandler.UnloadContent();
-    public override void Depose() => _gameObjectHandler.Depose();
 }

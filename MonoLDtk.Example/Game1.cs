@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using MonoLDtk.Example.States;
+using MonoLDtk.Shared.States;
 
 
 namespace MonoLDtk.Example;
@@ -29,12 +30,8 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        // GameObjectHandler = new GameObjectHandler(new Art(Content));
-
-        // GameObjectHandler.Add(new World(GameObjectHandler, Data.World.Map1));
-        // GameObjectHandler.Add(new Player(GameObjectHandler));
-        GameStateManager = new GameStateManager(Content, GameStateEnum.Splash);
-
+        GameStateManager = new GameStateManager(Content);
+        GameStateManager.TransitionToState(GameStateEnum.Splash);
     }
 
     protected override void Update(GameTime gameTime)
@@ -52,7 +49,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
+        _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
         // GameObjectHandler.Draw(_spriteBatch);
         GameStateManager.Draw(_spriteBatch);

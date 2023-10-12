@@ -2,37 +2,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoLDtk.Shared.State;
+using MonoLDtk.Shared.GameObjects;
+using MonoLDtk.Shared.States;
 
 namespace MonoLDtk.Example.States;
 
 public class MainMenu : GameState<GameStateEnum>
 {
-    public MainMenu(ContentManager content) : base(content)
-    {
-    }
-
-    public override void Depose()
-    {
-    }
-
-    public override void Draw(SpriteBatch spriteBatch)
-    {
-    }
-
-    public override void Initialize()
-    {
-    }
-
-    public override void LoadContent()
-    {
-    }
-
-    public override void UnloadContent()
-    {
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-    }
+    public MainMenu(ContentManager contentManager) : base(contentManager) { }
+    public override void Enter() { }
+    public override void Update(GameTime gameTime) { }
+    public override void Draw(SpriteBatch spriteBatch) { }
+    public override void Exit() { }
 }

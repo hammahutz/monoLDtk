@@ -9,7 +9,7 @@ namespace MonoLDtk.Shared.GameObjects.Components;
 
 public class AnimationController : IDraw, IUpdate
 {
-    private Dictionary<string, Animation> _animations { get; set; } = new Dictionary<string, Animation>();
+    private Dictionary<string, Animation> Animations { get; set; } = new Dictionary<string, Animation>();
     public Animation CurrentAnimation { get; set; }
     public int FramesPerSecond { get; set; }
 
@@ -17,34 +17,34 @@ public class AnimationController : IDraw, IUpdate
     {
         FramesPerSecond = framesPerSecond;
 
-        _animations = texturePaths
+        Animations = texturePaths
             .Select(s => new Animation(s, FramesPerSecond))
             .ToDictionary(d => d.SpriteSheet.Gfx.TexturePath, d => d);
 
-        if (_animations.Count > 0)
-            CurrentAnimation = _animations.First().Value;
+        if (Animations.Count > 0)
+            CurrentAnimation = Animations.First().Value;
 
     }
 
     public AnimationController(List<Animation> animations)
     {
-        _animations = animations
+        Animations = animations
             .ToDictionary(a => a.SpriteSheet.Gfx.TexturePath, a => a);
 
-        if (_animations.Count > 0)
-            CurrentAnimation = _animations.First().Value;
+        if (Animations.Count > 0)
+            CurrentAnimation = Animations.First().Value;
     }
 
-    public void AddAnimation(Animation animation) => _animations.Add(animation.SpriteSheet.Gfx.TexturePath, animation);
+    public void AddAnimation(Animation animation) => Animations.Add(animation.SpriteSheet.Gfx.TexturePath, animation);
     public void ChangeAnimation(string animationName)
     {
         if (animationName == CurrentAnimation.SpriteSheet.Gfx.TexturePath)
             return;
 
-        CurrentAnimation = _animations[animationName];
+        CurrentAnimation = Animations[animationName];
     }
 
-    public void Load(GameAssetsManager gameAssetsManager) => _animations.ToList().ForEach(a => a.Value.Load(gameAssetsManager));
+    public void Load(GameAssetsManager gameAssetsManager) => Animations.ToList().ForEach(a => a.Value.Load(gameAssetsManager));
 
     public void Update(GameTime gameTime) => CurrentAnimation.Update(gameTime);
 

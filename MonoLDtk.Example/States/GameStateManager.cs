@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
-using MonoLDtk.Shared.State;
+using MonoLDtk.Example.GameObjecs;
+using MonoLDtk.Shared.GameObjects;
+using MonoLDtk.Shared.States;
 
 namespace MonoLDtk.Example.States;
 
-public partial class GameStateManager : StateManager<GameStateEnum>
+public class GameStateManager : StateManager<GameStateEnum>
 {
-    public GameStateManager(ContentManager contentManager, GameStateEnum startState) : base(contentManager, startState)
+    public Dictionary<GameStateEnum, GameState<GameStateEnum>> States;
+
+    public ContentManager Content { get; private set; }
+
+    public GameStateManager(ContentManager contentManager)
     {
+        Content = contentManager;
+        States = new Dictionary<GameStateEnum, GameState<GameStateEnum>>(){
+                {GameStateEnum.Splash, new Splash(Content)},
+                {GameStateEnum.MainMenu, new MainMenu(Content)},
+                {GameStateEnum.PlayGame, new PlayGame(Content)}
+            };
     }
 
-    protected override Dictionary<GameStateEnum, GameState<GameStateEnum>> GetStates(ContentManager contentManager)
-    {
-        return new Dictionary<GameStateEnum, GameState<GameStateEnum>>(){
-            {GameStateEnum.Splash, new Splash(contentManager)},
-            {GameStateEnum.MainMenu, new MainMenu(contentManager)},
-            {GameStateEnum.PlayGame, new PlayGame(contentManager)},
-        };
-    }
+    protected override State<GameStateEnum> GetState(GameStateEnum state) => States[state];
 
+    public void Update(GameTime gameTime) => (CurrentState as GameState<GameStateEnum>).Update(gameTime);
+    public void Draw(SpriteBatch spriteBatch) => (CurrentState as GameState<GameStateEnum>).Draw(spriteBatch);
 }

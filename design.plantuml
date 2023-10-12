@@ -1,4 +1,6 @@
 @startuml
 class GameManager{
     +GameObjects
+    -Name
+    +void Test(string name)
 }

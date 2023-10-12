@@ -16,7 +16,7 @@ public class Gfx : IDraw
     public Vector2 Origin { get; set; } = Vector2.Zero;
     public Vector2 Scale { get; set; } = Vector2.One;
     public SpriteEffects Effects { get; set; } = SpriteEffects.None;
-    public float LayerDepth { get; set; } = 0.5f;
+    public float LayerDepth { get; set; } = 0.55f;
 
     public Gfx(string? texturePath) => TexturePath = texturePath;
 

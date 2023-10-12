@@ -6,7 +6,7 @@ namespace MonoLDtk.Shared.GameObjects
 {
     public class GameAssets<T>
     {
-        private Dictionary<string, T> _assets = new Dictionary<string, T>();
+        private Dictionary<string, T> _assets;
         private ContentManager _contentManager;
         public readonly List<string>? AssetPaths;
 
@@ -15,6 +15,7 @@ namespace MonoLDtk.Shared.GameObjects
         {
             AssetPaths = assetPaths;
             _contentManager = contentManager;
+            _assets = new Dictionary<string, T>();
 
             gameAssetsManager.OnLoadAction += Load;
             gameAssetsManager.OnUnloadAction += Unload;
