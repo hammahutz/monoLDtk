@@ -7,8 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoLDtk.Shared.GameObjects.Components;
 
-public class SpriteSheet : IDraw
+public class SpriteSheet : IDraw, ILoad
 {
+    public Vector2 Position { get => Gfx.Position; set => Gfx.Position = value; }
+
     private Point _currentGrid = Point.Zero;
 
     public Gfx Gfx { get; private set; }
@@ -27,6 +29,9 @@ public class SpriteSheet : IDraw
             _currentGrid = new Point(x, y);
         }
     }
+
+    public bool IsFlipped { get => Gfx.IsFlipped; set => Gfx.IsFlipped = value; }
+
     public SpriteSheet(string texturePath) => Gfx = new Gfx(texturePath) { SourceRectangle = new Rectangle(CurrentGrid, TileDimension) };
 
     public void Load(GameAssetsManager gameAssetsManager)
@@ -40,4 +45,6 @@ public class SpriteSheet : IDraw
         );
     }
     public void Draw(SpriteBatch spriteBatch) => Gfx.Draw(spriteBatch);
+
+    public void Unload() => Gfx.Unload();
 }

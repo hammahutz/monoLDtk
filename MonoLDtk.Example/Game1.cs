@@ -30,6 +30,8 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        Global.Load(Content);
+
         GameStateManager = new GameStateManager(Content);
         GameStateManager.TransitionToState(GameStateEnum.Splash);
     }
@@ -39,8 +41,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-            // GameObjectHandler.Update(gameTime);
-            GameStateManager.Update(gameTime);
+        GameStateManager.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -51,7 +52,6 @@ public class Game1 : Game
 
         _spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
-        // GameObjectHandler.Draw(_spriteBatch);
         GameStateManager.Draw(_spriteBatch);
 
         _spriteBatch.End();

@@ -6,19 +6,24 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoLDtk.Shared;
 using MonoLDtk.Shared.GameObjects;
 using MonoLDtk.Shared.GameObjects.Components;
 
 
 namespace MonoLDtk.Example.GameObjects;
 
-public class Player : GameObject, IUpdate, IDraw
+public class Player : GameObject, IUpdate, IDraw, ILoad
 {
     private double _counter = 0;
+    private float _speed = 100;
+    private bool _isFlipped = false;
     private readonly AnimationController _animation = new AnimationController(new List<Animation>(){
         new Animation(Data.Textures.HeroRun, 24),
         new Animation(Data.Textures.HeroIdle, 5),
     });
+
+    public Vector2 Position { get => _animation.Position; set => _animation.Position = value; }
 
     public Player()
     {
@@ -28,26 +33,40 @@ public class Player : GameObject, IUpdate, IDraw
 
     public void Update(GameTime gameTime)
     {
-        _counter += gameTime.ElapsedGameTime.TotalSeconds;
-        if (_counter > 5)
-        {
-            _animation.ChangeAnimation(Data.Textures.HeroIdle);
-            _counter = -5;
-        }
-        if (_counter > 0)
-        {
-            _animation.ChangeAnimation(Data.Textures.HeroRun);
-        }
-
+        HandleInput(gameTime);
         _animation.Update(gameTime);
-
-        if (Keyboard.GetState().IsKeyDown(Keys.Space))
-        {
-            Console.WriteLine("Space");
-            IsAlive = false;
-        }
     }
+
+    private void HandleInput(GameTime gameTime)
+    {
+        var keyboard = Keyboard.GetState();
+
+        //TODO Implemnet CommandPattern
+        //TODO Codesmeell parameters
+        if (keyboard.IsKeyDown(Keys.D))
+        {
+            MoveX(_speed, Data.Textures.HeroRun, gameTime);
+            _isFlipped = false;
+        }
+        else if (keyboard.IsKeyDown(Keys.A))
+        {
+            MoveX(-_speed, Data.Textures.HeroRun,gameTime);
+            _isFlipped = true;
+        }
+        else
+            MoveX(0, Data.Textures.HeroIdle, gameTime);
+
+    }
+
+    public void MoveX(float deltaX, string animation, GameTime time)
+    {
+        Position = Position.MoveX(deltaX, time);
+        _animation.ChangeAnimation(animation);
+        _animation.IsFlipped = _isFlipped;
+    }
+
 
     public void Draw(SpriteBatch spriteBatch) => _animation.Draw(spriteBatch);
 
+    public void Unload() => _animation.Unload();
 }

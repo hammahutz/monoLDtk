@@ -7,9 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoLDtk.Shared.GameObjects.Components;
 
-public class Animation : IDraw, IUpdate
+public class Animation : IDraw, IUpdate, ILoad
 {
     public readonly SpriteSheet SpriteSheet;
+
     private int _framePerSecond;
     private double _counter = 0;
 
@@ -20,6 +21,9 @@ public class Animation : IDraw, IUpdate
     }
 
     public double SecondsPerFrame => 1.0 / FramePerSecond;
+
+    public Vector2 Position { get => SpriteSheet.Position; set => SpriteSheet.Position = value; }
+    public bool IsFlipped { get => SpriteSheet.IsFlipped; internal set => SpriteSheet.IsFlipped = value; }
 
     public Animation(string texturePath, int framePerSecond)
     {
@@ -45,4 +49,6 @@ public class Animation : IDraw, IUpdate
     }
 
     public void Draw(SpriteBatch spriteBatch) => SpriteSheet.Draw(spriteBatch);
+
+    public void Unload() => SpriteSheet.Unload();
 }

@@ -37,8 +37,6 @@ namespace MonoLDtk.Example.GameObjecs
 
         public override T Get<T>(string path)
         {
-            Type t = typeof(T);
-
             if (Textures.IsType<T>())
             {
                 return Textures.Get<T>(path);

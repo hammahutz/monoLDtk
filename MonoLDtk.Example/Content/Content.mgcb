@@ -273,3 +273,10 @@
 /processor:LDtkProcessor
 /build:../../Content/Content/World/world1.ldtk;World/world1.ldtk
 
+#begin Font/Debug/Debug.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font/Debug/Debug.spritefont
+

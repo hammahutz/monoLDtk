@@ -7,11 +7,33 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoLDtk.Shared.GameObjects.Components;
 
-public class AnimationController : IDraw, IUpdate
+public class AnimationController : IDraw, IUpdate, ILoad
 {
     private Dictionary<string, Animation> Animations { get; set; } = new Dictionary<string, Animation>();
     public Animation CurrentAnimation { get; set; }
     public int FramesPerSecond { get; set; }
+    public Vector2 Position
+    {
+        get => CurrentAnimation.Position;
+
+        set
+        {
+            Animations
+                .ToList()
+                .ForEach(a => a.Value.Position = value);
+        }
+    }
+    public bool IsFlipped
+    {
+        get => CurrentAnimation.IsFlipped;
+
+        set
+        {
+            Animations
+                .ToList()
+                .ForEach(a => a.Value.IsFlipped = value);
+        }
+    }
 
     public AnimationController(List<string> texturePaths, int framesPerSecond)
     {
@@ -49,4 +71,11 @@ public class AnimationController : IDraw, IUpdate
     public void Update(GameTime gameTime) => CurrentAnimation.Update(gameTime);
 
     public void Draw(SpriteBatch spriteBatch) => CurrentAnimation.Draw(spriteBatch);
+
+    public void Unload() =>
+        Animations
+            .ToList()
+            .ForEach(a =>
+                a.Value.Unload()
+            );
 }

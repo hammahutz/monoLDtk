@@ -16,6 +16,7 @@ public class Splash : GameState<GameStateEnum>
 {
     public GameObjectHandler GameObjectHandler {get; private set;}
     public Splash(ContentManager contentManager) : base(contentManager){}
+    private double _gameTime = 0.0;
     public override void Enter()
     {
         GameObjectHandler = new GameObjectHandler(new Art(Content));
@@ -29,10 +30,10 @@ public class Splash : GameState<GameStateEnum>
     public override void Draw(SpriteBatch spriteBatch)
     {
          GameObjectHandler.Draw(spriteBatch);
+         spriteBatch.DrawString(Global.Debug, _gameTime.ToString(), Vector2.Zero, Color.White,0f, Vector2.Zero, 1f, SpriteEffects.None, 0.6f);
     }
     public override void Exit()
     {
-        GameObjectHandler.UnloadContent();
         GameObjectHandler.Depose();
     }
 
