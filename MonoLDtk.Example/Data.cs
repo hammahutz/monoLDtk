@@ -22,12 +22,15 @@ public static class Data
     {
         public const string HeroIdle = "Texture/LavaCaves/Character/Hero/CharacterIdle";
         public const string HeroRun = "Texture/LavaCaves/Character/Hero/CharacterRun";
-
         public const string LavaTileset = "Texture/LavaCaves/Tileset/Lava_tileset";
     }
     public static class Sprite
     {
         public const int FramePerSecond = 24;
         public static readonly Point Size = new Point(32);
+    }
+    public static class Graphics
+    {
+        public static Point WindowSize { get; set; }
     }
 }

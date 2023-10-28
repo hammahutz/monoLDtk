@@ -17,6 +17,9 @@ public class Game1 : Game
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
+
+        Data.Graphics.WindowSize = new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
@@ -50,11 +53,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin(SpriteSortMode.FrontToBack);
-
         GameStateManager.Draw(_spriteBatch);
-
-        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
