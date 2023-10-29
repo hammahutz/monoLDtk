@@ -4,6 +4,7 @@ using System.IO;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoLDtk.Example;
 
@@ -32,5 +33,6 @@ public static class Data
     public static class Graphics
     {
         public static Point WindowSize { get; set; }
+        public static Viewport Viewport { get; set; }
     }
 }

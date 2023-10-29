@@ -18,7 +18,6 @@ public class Game1 : Game
     {
         _graphics = new GraphicsDeviceManager(this);
 
-        Data.Graphics.WindowSize = new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -34,6 +33,7 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Global.Load(Content);
+        Data.Graphics.Viewport = GraphicsDevice.Viewport;
 
         GameStateManager = new GameStateManager(Content);
         GameStateManager.TransitionToState(GameStateEnum.Splash);

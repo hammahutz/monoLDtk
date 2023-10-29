@@ -32,10 +32,11 @@ public class Gfx : IDraw, ILoad
         }
     }
 
+    public Rectangle? Size => new Rectangle(0, 0, SourceRectangle!.Value.Width, SourceRectangle.Value.Height);
+
     public Gfx(string? texturePath) => TexturePath = texturePath;
 
     public void Load(GameAssetsManager gameAssetsManager) => Texture = gameAssetsManager.Get<Texture2D>(TexturePath);
-
     public void Draw(SpriteBatch spriteBatch) => spriteBatch.Draw(Texture, Position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);
     public void Unload() => Texture = null;
 

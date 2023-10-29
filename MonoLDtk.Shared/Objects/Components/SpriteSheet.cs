@@ -10,6 +10,7 @@ namespace MonoLDtk.Shared.GameObjects.Components;
 public class SpriteSheet : IDraw, ILoad
 {
     public Vector2 Position { get => Gfx.Position; set => Gfx.Position = value; }
+    public Rectangle? Size { get => Gfx.Size; }
 
     private Point _currentGrid = Point.Zero;
 

@@ -35,6 +35,8 @@ public class AnimationController : IDraw, IUpdate, ILoad
         }
     }
 
+    public Rectangle? Size { get => CurrentAnimation.Size; }
+
     public AnimationController(List<string> texturePaths, int framesPerSecond)
     {
         FramesPerSecond = framesPerSecond;

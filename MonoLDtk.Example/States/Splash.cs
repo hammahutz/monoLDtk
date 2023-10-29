@@ -1,3 +1,5 @@
+using System;
+
 using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -15,46 +17,59 @@ namespace MonoLDtk.Example.States;
 
 public class Splash : GameState<GameStateEnum>
 {
-    private string _debug;
-    private Matrix _translation;
-    private Player _player;
-    private float _cameraSpeed = 10.0f;
-
     public GameObjectHandler GameObjectHandler { get; private set; }
-    public Splash(ContentManager contentManager) : base(contentManager) { }
+    private string _debug;
+    private Player _player;
 
+    private Camera _camera ;
+
+    public Splash(ContentManager contentManager) : base(contentManager) { }
 
 
     public override void Enter()
     {
-        GameObjectHandler = new GameObjectHandler(new Art(Content));
+        _camera = new Camera(Data.Graphics.Viewport);
 
         _player = new Player();
+        GameObjectHandler = new GameObjectHandler(new Art(Content));
         GameObjectHandler.Add(_player);
-
         GameObjectHandler.Add(new World(Data.World.Map1));
     }
     public override void Update(GameTime gameTime)
     {
-        _debug = $"Game Time: {gameTime.TotalGameTime.TotalSeconds}\nFPS: {1 / gameTime.ElapsedGameTime.TotalSeconds}";
-        GameObjectHandler.Update(gameTime);
-        CalculateCamera();
+        _debug = $"Game Time: {gameTime.TotalGameTime.TotalSeconds}\n";
+        _debug += $"FPS: {1 / gameTime.ElapsedGameTime.TotalSeconds}\n";
+        _debug += $"{_camera}\n";
 
+        GameObjectHandler.Update(gameTime);
+        _camera.MoveCamera(_player.Position, _player.Size);
+
+
+        var keyboard = Keyboard.GetState();
+
+        if (keyboard.IsKeyDown(Keys.W))
+            _camera.ZoomCamera(2, gameTime);
+
+        if (keyboard.IsKeyDown(Keys.S))
+            _camera.ZoomCamera(-2, gameTime);
+
+        if (keyboard.IsKeyDown(Keys.Q))
+            _camera.RollCamera(10, gameTime);
+
+        if (keyboard.IsKeyDown(Keys.E))
+            _camera.RollCamera(-10, gameTime);
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        // Matrix.CreateOrthographic()
-        spriteBatch.Begin(transformMatrix: _translation, sortMode: SpriteSortMode.FrontToBack);
+        spriteBatch.Begin(transformMatrix: _camera.GetCameraMatrix, sortMode: SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
         GameObjectHandler.Draw(spriteBatch);
         spriteBatch.End();
-        
+
         spriteBatch.Begin();
         spriteBatch.DrawString(Global.Debug, _debug.ToString(), Vector2.Zero, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.6f);
         spriteBatch.End();
     }
-
-    private void CalculateCamera() => _translation = Matrix.CreateTranslation(Data.Graphics.WindowSize.ToVector3() / 2 - _player.Position.ToVector3());
 
     public override void Exit()
     {

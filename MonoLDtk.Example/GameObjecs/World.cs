@@ -14,6 +14,8 @@ namespace MonoLDtk.Example.GameObjecs
 
         public Vector2 Position { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
+        public Rectangle? Size => throw new System.NotImplementedException();
+
         public World(string path) => _worldPath = path;
 
         public void Load(GameAssetsManager gameAssetsManager)

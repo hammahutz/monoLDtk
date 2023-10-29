@@ -16,7 +16,6 @@ namespace MonoLDtk.Example.GameObjects;
 
 public class Player : GameObject, IUpdate, IDraw, ILoad
 {
-    private double _counter = 0;
     private float _speed = 100;
     private bool _isFlipped = false;
     private readonly AnimationController _animation = new AnimationController(new List<Animation>(){
@@ -25,10 +24,7 @@ public class Player : GameObject, IUpdate, IDraw, ILoad
     });
 
     public Vector2 Position { get => _animation.Position; set => _animation.Position = value; }
-
-    public Player()
-    {
-    }
+    public Rectangle? Size { get => _animation.Size; }
 
     public void Load(GameAssetsManager gameAssetsManager) => _animation.Load(gameAssetsManager);
 
@@ -51,7 +47,7 @@ public class Player : GameObject, IUpdate, IDraw, ILoad
         }
         else if (keyboard.IsKeyDown(Keys.A))
         {
-            MoveX(-_speed, Data.Textures.HeroRun,gameTime);
+            MoveX(-_speed, Data.Textures.HeroRun, gameTime);
             _isFlipped = true;
         }
         else

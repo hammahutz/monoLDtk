@@ -24,6 +24,7 @@ public class Animation : IDraw, IUpdate, ILoad
 
     public Vector2 Position { get => SpriteSheet.Position; set => SpriteSheet.Position = value; }
     public bool IsFlipped { get => SpriteSheet.IsFlipped; internal set => SpriteSheet.IsFlipped = value; }
+    public Rectangle? Size { get => SpriteSheet.Size; }
 
     public Animation(string texturePath, int framePerSecond)
     {
