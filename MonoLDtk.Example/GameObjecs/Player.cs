@@ -16,7 +16,7 @@ namespace MonoLDtk.Example.GameObjects;
 
 public class Player : GameObject, IUpdate, IDraw, ILoad
 {
-    private float _speed = 100;
+    private readonly float _speed = 100;
     private bool _isFlipped = false;
     private readonly AnimationController _animation = new AnimationController(new List<Animation>(){
         new Animation(Data.Textures.HeroRun, 24),

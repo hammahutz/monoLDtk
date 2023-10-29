@@ -29,11 +29,16 @@ public class Splash : GameState<GameStateEnum>
     public override void Enter()
     {
         _camera = new Camera(Data.Graphics.Viewport);
+        _camera.SetZoom(2f);
 
         _player = new Player();
         GameObjectHandler = new GameObjectHandler(new Art(Content));
         GameObjectHandler.Add(_player);
+
         GameObjectHandler.Add(new World(Data.World.Map1));
+        GameObjectHandler.Add(new ParallaxBackground(Data.Textures.Background, _camera,10f, Data.DrawOrder.Background));
+        GameObjectHandler.Add(new ParallaxBackground(Data.Textures.Middleground, _camera,5f, Data.DrawOrder.Middleground));
+        GameObjectHandler.Add(new ParallaxBackground(Data.Textures.Foreground, _camera,0.5f, Data.DrawOrder.Foreground));
     }
     public override void Update(GameTime gameTime)
     {

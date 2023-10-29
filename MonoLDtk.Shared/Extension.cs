@@ -32,8 +32,10 @@ namespace MonoLDtk.Shared
             return new Vector2(vector.X, deltaY);
         }
 
-        public static Vector3 ToVector3(this Vector2 vecto2D) => new Vector3(vecto2D.X, vecto2D.Y, 0);
-        public static Vector3 ToVector3(this Point point) => new Vector3(point.X, point.Y, 0);
+        public static Vector3 ToVector3(this Vector2 v) => new Vector3(v.X, v.Y, 0);
+        public static Vector3 ToVector3(this Point p) => new Vector3(p.X, p.Y, 0);
+
+        public static Vector2 ToVector2(this Vector3 v) => new Vector2(v.X, v.Y);
 
 
     }

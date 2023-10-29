@@ -12,9 +12,9 @@ namespace MonoLDtk.Example.GameObjecs
         private readonly string _worldPath;
         private LDtk _ldtk;
 
-        public Vector2 Position { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public Vector2 Position { get; set; } = Vector2.Zero;
 
-        public Rectangle? Size => throw new System.NotImplementedException();
+        public Rectangle? Size => Rectangle.Empty;
 
         public World(string path) => _worldPath = path;
 

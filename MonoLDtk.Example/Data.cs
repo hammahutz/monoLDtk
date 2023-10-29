@@ -24,11 +24,24 @@ public static class Data
         public const string HeroIdle = "Texture/LavaCaves/Character/Hero/CharacterIdle";
         public const string HeroRun = "Texture/LavaCaves/Character/Hero/CharacterRun";
         public const string LavaTileset = "Texture/LavaCaves/Tileset/Lava_tileset";
+        public const string Background = "Texture/LavaCaves/Background/BG_far";
+        public const string Middleground = "Texture/LavaCaves/Background/BG_near";
+        public const string Foreground = "Texture/LavaCaves/Decorantions/RuinsDecorations";
     }
     public static class Sprite
     {
         public const int FramePerSecond = 24;
         public static readonly Point Size = new Point(32);
+
+    }
+    public static class DrawOrder
+    {
+
+        public const float Background = 0.0f;
+        public const float Middleground = 0.1f;
+        public const float Foreground = 1f;
+        public const float Player = 0f;
+
     }
     public static class Graphics
     {

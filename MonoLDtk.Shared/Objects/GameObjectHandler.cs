@@ -29,15 +29,17 @@ public class GameObjectHandler
 
     public void Add(GameObject gameObject)
     {
-        gameObject.Initialize(this);
+        if (gameObject == null)
+            return;
 
+        gameObject.Initialize(this);
 
         if (gameObject is ILoad && GameAssetManager != null)
         {
             ((ILoad)gameObject).Load(GameAssetManager);
         }
 
-        _gameObjects?.Add(gameObject);
+        _gameObjects.Add(gameObject);
     }
 
     public void RemoveExpiredGameObjects() => _gameObjects?
