@@ -1,6 +1,6 @@
 # monoLDtk
 
-*Under delepoment*
+*Under development*
 
 A project made to explore game development with monogame. The plan is to make a 2d-platformer.
 
